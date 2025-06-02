@@ -1,0 +1,155 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+keys/
+secrets/
+wallets/
+
+# Logs
+*.log
+logs/
+*.out
+trace-*.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+dump.sql
+
+# IDE & Editors
+.vscode/settings.json
+.vscode/launch.json
+.vscode/.ropeproject
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Build artifacts
+dist/
+build/
+*.tar.gz
+*.zip
+
+# Node modules (if any frontend tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if any python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Temporary files
+tmp/
+temp/
+*.temp
+
+# Test artifacts
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+
+# Documentation build
+docs/_build/
+site/
+
+# Profiling
+*.prof
+*.pprof
+profile/
+
+# Local configuration overrides
+config.local.toml
+scenarios/local.yaml
+
+# Certificate files
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# Memory dumps
+*.dump
+*.hprof
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# vim
+*.vim
+.*.sw?
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# MacOS
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*

@@ -1,0 +1,166 @@
+[package]
+name = "solana-sniper-bot"
+version = "0.1.0"
+edition = "2021"
+authors = ["Hassan Hafedh Ubaid <hassan@example.com>"]
+description = "Ultra-fast Solana token sniper bot with scenario-based testing and advanced risk management"
+homepage = "https://github.com/hassanubaid/solana-sniper-rust"
+repository = "https://github.com/hassanubaid/solana-sniper-rust"
+license = "MIT"
+keywords = ["solana", "trading", "defi", "sniper", "bot", "blockchain"]
+categories = ["finance", "cryptocurrency", "command-line-utilities"]
+readme = "README.md"
+rust-version = "1.75"
+
+[[bin]]
+name = "sniper-bot"
+path = "src/main.rs"
+
+[lib]
+name = "solana_sniper_bot"
+path = "src/lib.rs"
+
+[dependencies]
+# Async Runtime & Concurrency
+tokio = { version = "1.35", features = [
+    "macros", "rt-multi-thread", "time", "sync", "signal",
+    "process", "fs", "net", "parking_lot", "tracing"
+] }
+tokio-util = { version = "0.7", features = ["time", "codec"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Error Handling & Result Types
+anyhow = "1.0"
+thiserror = "1.0"
+color-eyre = "0.6"
+
+# Observability & Monitoring
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = [
+    "env-filter", "json", "registry", "fmt", "ansi", "chrono"
+] }
+tracing-appender = "0.2"
+tracing-futures = "0.2"
+
+# Metrics & Performance
+metrics = "0.22"
+metrics-exporter-prometheus = "0.13"
+
+# Solana Ecosystem (Latest stable versions)
+solana-client = "1.18"
+solana-sdk = "1.18"
+solana-account-decoder = "1.18"
+solana-transaction-status = "1.18"
+solana-program = "1.18"
+spl-token = "4.0"
+spl-associated-token-account = "2.3"
+
+# HTTP & Networking
+reqwest = { version = "0.11", features = [
+    "json", "rustls-tls", "stream", "gzip", "brotli"
+] }
+hyper = { version = "0.14", features = ["full"] }
+tower = { version = "0.4", features = ["full"] }
+url = { version = "2.5", features = ["serde"] }
+
+# Serialization & Deserialization
+serde = { version = "1.0", features = ["derive", "rc"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+serde_yaml = "0.9"
+toml = "0.8"
+bincode = "1.3"
+
+# Configuration Management
+config = { version = "0.14", features = ["yaml", "toml", "json"] }
+dotenvy = "0.15"
+clap = { version = "4.4", features = ["derive", "env"] }
+
+# Database & Caching
+sqlx = { version = "0.7", features = [
+    "postgres", "runtime-tokio-rustls", "macros",
+    "uuid", "chrono", "json", "migrate", "decimal"
+] }
+redis = { version = "0.24", features = [
+    "tokio-comp", "connection-manager", "cluster", "streams"
+] }
+
+# Telegram Integration
+teloxide = { version = "0.12", features = ["macros", "webhooks"] }
+
+# Cryptography & Security
+ring = "0.17"
+aes-gcm = "0.10"
+chacha20poly1305 = "0.10"
+argon2 = "0.5"
+base64 = "0.21"
+base58 = "0.2"
+hex = "0.4"
+rand = "0.8"
+zeroize = { version = "1.7", features = ["zeroize_derive"] }
+
+# Time & Date
+chrono = { version = "0.4", features = ["serde"] }
+time = { version = "0.3", features = ["serde", "macros"] }
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+once_cell = "1.19"
+lazy_static = "1.4"
+dashmap = "5.5"
+parking_lot = "0.12"
+rayon = "1.8"
+crossbeam = "0.8"
+
+# Financial Calculations
+rust_decimal = { version = "1.33", features = ["serde-float"] }
+rust_decimal_macros = "1.33"
+pbkdf2 = "0.13.0-rc.0"
+regex = "1.11.1"
+
+# Development Dependencies
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.12"
+wiremock = "0.5"
+tempfile = "3.8"
+assert_matches = "1.5"
+pretty_assertions = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+
+# Build Optimization
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+opt-level = 3
+overflow-checks = false
+
+[profile.dev]
+debug = true
+opt-level = 0
+overflow-checks = true
+incremental = true
+
+[profile.test]
+opt-level = 1
+
+# Workspace Configuration
+[workspace]
+resolver = "2"
+
+# Feature Flags
+[features]
+default = ["metrics", "tracing"]
+metrics = ["metrics-exporter-prometheus"]
+tracing = ["tracing-subscriber/json"]
+development = []
+production = []
+simulation = []
+
+# Benchmarks
+[[bench]]
+name = "trading_benchmarks"
+harness = false
