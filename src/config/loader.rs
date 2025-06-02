@@ -405,7 +405,7 @@ impl ConfigLoader {
     }
 
     /// Create default configuration when no config file is found
-    fn create_default_config(&self) -> AppConfig {
+    pub fn create_default_config(&self) -> AppConfig {
         warn!("🏗️  Creating default configuration");
 
         AppConfig {
