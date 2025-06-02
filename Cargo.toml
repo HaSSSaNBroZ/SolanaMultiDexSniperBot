@@ -29,7 +29,7 @@ tokio = { version = "1.35", features = [
 tokio-util = { version = "0.7", features = ["time", "codec"] }
 futures = "0.3"
 async-trait = "0.1"
-
+backoff = "0.4"
 # Error Handling & Result Types
 anyhow = "1.0"
 thiserror = "2.0.12"
