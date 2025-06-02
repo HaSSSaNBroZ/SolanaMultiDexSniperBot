@@ -1,0 +1,145 @@
+# Base Configuration File for Solana Sniper Bot
+# This file contains default settings that can be overridden by environment variables and scenario files
+
+[environment]
+name = "development"
+log_level = "info"
+log_format = "pretty"
+debug_mode = true
+
+[solana]
+# Primary Solana RPC endpoint
+rpc_url = "https://api.mainnet-beta.solana.com"
+# Backup/fallback RPC endpoints
+fallback_rpc_urls = [
+    "https://api.mainnet-beta.solana.com",
+    "https://solana-api.projectserum.com"
+]
+# Connection settings
+connection_timeout_ms = 5000
+max_retries = 3
+retry_backoff_ms = 1000
+
+[helius]
+# Helius API configuration
+api_key = ""  # Set via environment variable
+base_url = "https://mainnet.helius-rpc.com"
+webhook_url = ""
+enable_webhooks = true
+rate_limit_per_second = 100
+
+[birdeye]
+# Birdeye API configuration
+api_key = ""  # Set via environment variable
+base_url = "https://public-api.birdeye.so"
+rate_limit_per_minute = 500
+cache_ttl_seconds = 60
+
+[database]
+# PostgreSQL database settings
+url = ""  # Set via environment variable
+max_connections = 20
+min_connections = 5
+connection_timeout_ms = 5000
+idle_timeout_ms = 300000
+# Migration settings
+auto_migrate = true
+migration_path = "migrations"
+
+[redis]
+# Redis cache settings
+url = ""  # Set via environment variable
+max_connections = 20
+connection_timeout_ms = 3000
+command_timeout_ms = 1000
+# Cache settings
+default_ttl_seconds = 3600
+key_prefix = "sniper:"
+
+[telegram]
+# Telegram bot configuration
+bot_token = ""  # Set via environment variable
+webhook_url = ""
+admin_chat_id = 0  # Set via environment variable
+allowed_user_ids = []  # Set via environment variable
+# Bot behavior
+command_timeout_ms = 30000
+max_message_length = 4096
+enable_inline_keyboards = true
+
+[trading]
+# Core trading parameters
+scenario_mode = "development"  # development, production, simulation
+max_position_size_sol = 1.0
+default_slippage_percent = 3.0
+stop_loss_percent = 20.0
+take_profit_percent = 100.0
+max_concurrent_trades = 5
+trade_execution_timeout_ms = 50
+enable_auto_trading = false
+enable_auto_selling = false
+
+[risk]
+# Risk management settings
+risk_score_threshold = 7
+max_daily_loss_percent = 10.0
+max_drawdown_percent = 20.0
+emergency_stop_loss_percent = 50.0
+# Risk evaluation rules
+enable_honeypot_detection = true
+enable_holder_analysis = true
+enable_liquidity_checks = true
+min_liquidity_sol = 1.0
+min_holder_count = 10
+max_token_age_seconds = 300
+
+[scanner]
+# Token detection settings
+enable_real_time_scanning = true
+scan_interval_ms = 1000
+max_tokens_per_scan = 100
+# Filtering rules
+min_market_cap_usd = 1000
+max_market_cap_usd = 10000000
+blacklisted_tokens = []
+blacklisted_developers = []
+
+[analytics]
+# Performance monitoring
+enable_metrics = true
+metrics_port = 9090
+enable_performance_tracking = true
+trade_history_retention_days = 90
+# Reporting
+daily_report_time = "09:00"
+weekly_report_day = "monday"
+
+[monitoring]
+# Health checks and observability
+enable_health_checks = true
+health_check_port = 8080
+health_check_interval_seconds = 30
+# Alerting
+enable_telegram_alerts = true
+alert_on_errors = true
+alert_on_trade_failures = true
+error_threshold_per_minute = 10
+
+[security]
+# Security settings
+session_timeout_minutes = 60
+max_failed_attempts = 3
+lockout_duration_minutes = 5
+# Encryption
+encryption_key = ""  # Set via environment variable
+enable_audit_logging = true
+audit_log_retention_days = 365
+
+[performance]
+# Performance targets and limits
+max_memory_mb = 512
+max_cpu_percent = 30
+target_detection_latency_ms = 1000
+target_execution_latency_ms = 50
+connection_pool_size = 20
+worker_thread_count = 4

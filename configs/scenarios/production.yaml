@@ -1,0 +1,177 @@
+# Production Scenario Configuration
+# This configuration is optimized for live trading with real funds
+
+scenario:
+  name: "production"
+  description: "Production environment with real trading"
+  version: "1.0.0"
+  created_at: "2024-06-02T10:00:00Z"
+
+# Production trading settings
+trading:
+  scenario_mode: "production"
+  max_position_size_sol: 1.0  # Real position sizes
+  default_slippage_percent: 2.0  # Tight slippage for efficiency
+  stop_loss_percent: 15.0  # Conservative stop loss
+  take_profit_percent: 80.0  # Reasonable take profit
+  max_concurrent_trades: 5  # Limited for risk management
+  enable_auto_trading: true  # Auto trading enabled
+  enable_auto_selling: true  # Auto selling enabled
+  simulation_mode: false  # Real trading
+  # Production safety features
+  enable_circuit_breaker: true
+  circuit_breaker_loss_percent: 5.0
+  enable_position_limits: true
+  daily_trade_limit: 50
+
+# Strict risk settings for production
+risk:
+  risk_score_threshold: 6  # Conservative threshold
+  max_daily_loss_percent: 8.0  # Conservative daily loss
+  max_drawdown_percent: 15.0  # Conservative drawdown
+  emergency_stop_loss_percent: 40.0  # Emergency protection
+  # All risk checks enabled
+  enable_honeypot_detection: true
+  enable_holder_analysis: true
+  enable_liquidity_checks: true
+  enable_smart_contract_verification: true
+  min_liquidity_sol: 2.0  # Higher liquidity requirement
+  min_holder_count: 25  # Higher holder requirement
+  max_token_age_seconds: 180  # Only very new tokens
+  # Additional production checks
+  enable_rug_pull_detection: true
+  enable_whale_activity_monitoring: true
+  whale_threshold_percent: 10.0
+
+# Optimized scanning for production
+scanner:
+  enable_real_time_scanning: true
+  scan_interval_ms: 500  # Fast scanning for opportunities
+  max_tokens_per_scan: 200  # More tokens per scan
+  # Strict filtering for production
+  min_market_cap_usd: 5000  # Higher minimum market cap
+  max_market_cap_usd: 5000000  # Reasonable maximum
+  # Production blacklists (populated with known scams)
+  blacklisted_tokens: []  # Populated from risk database
+  blacklisted_developers: []  # Populated from risk database
+  # Additional filters
+  enable_contract_verification: true
+  require_social_links: false  # Optional but preferred
+  min_trading_volume_24h: 10000  # Minimum daily volume
+
+# Production monitoring
+monitoring:
+  enable_health_checks: true
+  health_check_port: 8080
+  health_check_interval_seconds: 30
+  # Critical alerting
+  enable_telegram_alerts: true
+  alert_on_errors: true
+  alert_on_trade_failures: true
+  alert_on_risk_events: true
+  alert_on_performance_degradation: true
+  error_threshold_per_minute: 3  # Low tolerance for errors
+  # Additional monitoring
+  enable_uptime_monitoring: true
+  enable_performance_monitoring: true
+  performance_alert_threshold_ms: 100
+
+# Production analytics
+analytics:
+  enable_metrics: true
+  metrics_port: 9090
+  enable_performance_tracking: true
+  enable_detailed_logging: false  # Reduced logging for performance
+  trade_history_retention_days: 365  # Full year retention
+  # Production reporting
+  enable_daily_reports: true
+  enable_weekly_reports: true
+  enable_monthly_reports: true
+  report_delivery_method: "telegram"
+  # Compliance reporting
+  enable_audit_reports: true
+  audit_report_frequency: "monthly"
+
+# Enhanced security for production
+security:
+  session_timeout_minutes: 30  # Shorter sessions for security
+  max_failed_attempts: 3  # Strict authentication
+  lockout_duration_minutes: 10  # Longer lockout
+  enable_audit_logging: true
+  audit_log_retention_days: 2555  # 7 years for compliance
+  # Production security features
+  enable_2fa: true  # Two-factor authentication
+  enable_ip_whitelisting: true
+  allowed_ip_ranges: []  # Configure with actual IPs
+  enable_rate_limiting: true
+  rate_limit_per_minute: 100
+  # Encryption
+  encryption_algorithm: "AES-256-GCM"
+  key_rotation_days: 90
+
+# Production database settings
+database:
+  schema: "prod_sniper"
+  auto_migrate: false  # Manual migration approval for prod
+  enable_query_logging: false  # Disabled for performance
+  log_slow_queries: true
+  slow_query_threshold_ms: 500
+  # Production optimizations
+  enable_connection_pooling: true
+  enable_read_replicas: false  # Configure if available
+  backup_frequency_hours: 6
+  backup_retention_days: 30
+
+# Production Redis settings
+redis:
+  key_prefix: "prod_sniper:"
+  default_ttl_seconds: 3600
+  enable_debug_logging: false  # Disabled for performance
+  # Production optimizations
+  enable_clustering: false  # Configure if available
+  enable_persistence: true
+  persistence_interval_seconds: 300
+
+# Performance targets for production
+performance:
+  max_memory_mb: 512  # Full memory allowance
+  max_cpu_percent: 30  # Conservative CPU limit
+  target_detection_latency_ms: 800  # Aggressive latency targets
+  target_execution_latency_ms: 40
+  connection_pool_size: 20  # Full pool size
+  worker_thread_count: 4  # Optimal thread count
+  # Production optimizations
+  enable_cpu_affinity: false  # Configure if needed
+  enable_memory_optimizations: true
+  garbage_collection_tuning: "throughput"
+
+# Production logging
+logging:
+  level: "info"  # Reduced logging for performance
+  format: "json"  # Structured logging for analysis
+  enable_file_logging: true
+  log_directory: "logs/prod"
+  max_file_size_mb: 500
+  max_files: 100
+  enable_console_colors: false  # Disabled for production
+  # Production log management
+  enable_log_rotation: true
+  rotation_frequency: "daily"
+  enable_log_compression: true
+  enable_remote_logging: false  # Configure if available
+
+# External service configurations
+external_services:
+  # Configure external monitoring (optional)
+  datadog:
+    enabled: false
+    api_key: ""
+  # Configure external alerting (optional)
+  pagerduty:
+    enabled: false
+    integration_key: ""
+  # Configure external backups (optional)
+  aws_s3:
+    enabled: false
+    bucket: ""
+    region: ""

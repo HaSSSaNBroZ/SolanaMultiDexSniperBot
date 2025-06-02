@@ -1,0 +1,120 @@
+# Development Scenario Configuration
+# This configuration is optimized for development and testing
+
+scenario:
+  name: "development"
+  description: "Development environment with simulation trading"
+  version: "1.0.0"
+  created_at: "2024-06-02T10:00:00Z"
+
+# Override trading settings for development
+trading:
+  scenario_mode: "development"
+  max_position_size_sol: 0.1  # Smaller positions for testing
+  default_slippage_percent: 5.0  # Higher slippage tolerance for testing
+  stop_loss_percent: 10.0  # Tighter stop loss for safety
+  take_profit_percent: 50.0  # Lower take profit for faster trades
+  max_concurrent_trades: 2  # Limited concurrent trades
+  enable_auto_trading: false  # Manual trading only in dev
+  enable_auto_selling: false  # Manual selling only
+  simulation_mode: true  # Enable simulation
+  virtual_capital_sol: 10.0  # Virtual capital for testing
+
+# Relaxed risk settings for testing
+risk:
+  risk_score_threshold: 8  # Higher threshold allows more tokens
+  max_daily_loss_percent: 5.0  # Lower daily loss limit
+  max_drawdown_percent: 10.0  # Lower drawdown limit
+  emergency_stop_loss_percent: 25.0  # Tighter emergency stop
+  # Development-specific rules
+  enable_honeypot_detection: true
+  enable_holder_analysis: false  # Disabled for faster testing
+  enable_liquidity_checks: true
+  min_liquidity_sol: 0.5  # Lower minimum for testing
+  min_holder_count: 5  # Lower holder requirement
+  max_token_age_seconds: 600  # Allow older tokens for testing
+
+# Enhanced scanning for development
+scanner:
+  enable_real_time_scanning: true
+  scan_interval_ms: 2000  # Slower scanning for development
+  max_tokens_per_scan: 50  # Fewer tokens per scan
+  # Broader filtering for testing
+  min_market_cap_usd: 100  # Lower minimum market cap
+  max_market_cap_usd: 100000  # Lower maximum market cap
+  # Test token whitelist
+  whitelisted_tokens:
+    - "So11111111111111111111111111111111111111112"  # Wrapped SOL for testing
+  # Development blacklists (empty for testing)
+  blacklisted_tokens: []
+  blacklisted_developers: []
+
+# Enhanced monitoring for development
+monitoring:
+  enable_health_checks: true
+  health_check_port: 8081  # Different port for dev
+  health_check_interval_seconds: 10  # More frequent checks
+  # Enhanced alerting
+  enable_telegram_alerts: true
+  alert_on_errors: true
+  alert_on_trade_failures: true
+  alert_on_risk_events: true
+  error_threshold_per_minute: 5  # Lower threshold for dev
+
+# Development-specific analytics
+analytics:
+  enable_metrics: true
+  metrics_port: 9091  # Different port for dev
+  enable_performance_tracking: true
+  enable_detailed_logging: true
+  trade_history_retention_days: 30  # Shorter retention for dev
+  # Enhanced reporting
+  enable_debug_reports: true
+  report_frequency_minutes: 30  # More frequent reports
+
+# Security settings for development
+security:
+  session_timeout_minutes: 120  # Longer sessions for dev
+  max_failed_attempts: 5  # More lenient for development
+  lockout_duration_minutes: 2  # Shorter lockout
+  enable_audit_logging: true
+  audit_log_retention_days: 30  # Shorter retention for dev
+  # Development flags
+  enable_debug_mode: true
+  allow_unsafe_operations: true  # Only for development!
+  log_sensitive_data: false  # Never log sensitive data
+
+# Development database settings
+database:
+  # Use different database schema for development
+  schema: "dev_sniper"
+  auto_migrate: true
+  enable_query_logging: true
+  log_slow_queries: true
+  slow_query_threshold_ms: 1000
+
+# Development Redis settings
+redis:
+  # Use different key prefix for development
+  key_prefix: "dev_sniper:"
+  default_ttl_seconds: 1800  # Shorter TTL for dev
+  enable_debug_logging: true
+
+# Performance settings for development
+performance:
+  max_memory_mb: 256  # Lower memory limit for dev
+  max_cpu_percent: 50  # Higher CPU limit for dev (debugging overhead)
+  target_detection_latency_ms: 2000  # Relaxed latency targets
+  target_execution_latency_ms: 100
+  connection_pool_size: 10  # Smaller pool for dev
+  worker_thread_count: 2  # Fewer threads for dev
+
+# Development logging
+logging:
+  level: "debug"
+  format: "pretty"
+  enable_file_logging: true
+  log_directory: "logs/dev"
+  max_file_size_mb: 100
+  max_files: 10
+  enable_console_colors: true

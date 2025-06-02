@@ -32,7 +32,7 @@ async-trait = "0.1"
 
 # Error Handling & Result Types
 anyhow = "1.0"
-thiserror = "1.0"
+thiserror = "2.0.12"
 color-eyre = "0.6"
 
 # Observability & Monitoring
@@ -44,24 +44,24 @@ tracing-appender = "0.2"
 tracing-futures = "0.2"
 
 # Metrics & Performance
-metrics = "0.22"
-metrics-exporter-prometheus = "0.13"
+metrics = "0.24.2"
+metrics-exporter-prometheus = { version = "0.17.0", optional = true }
 
 # Solana Ecosystem (Latest stable versions)
-solana-client = "1.18"
-solana-sdk = "1.18"
-solana-account-decoder = "1.18"
-solana-transaction-status = "1.18"
-solana-program = "1.18"
-spl-token = "4.0"
-spl-associated-token-account = "2.3"
+solana-client = "2.2.7"
+solana-sdk = "2.2.2"
+solana-account-decoder = "2.2.7"
+solana-transaction-status = "2.2.7"
+solana-program = "2.2.1"
+spl-token = "8.0.0"
+spl-associated-token-account = "7.0.0"
 
 # HTTP & Networking
-reqwest = { version = "0.11", features = [
+reqwest = { version = "0.12.19", features = [
     "json", "rustls-tls", "stream", "gzip", "brotli"
 ] }
-hyper = { version = "0.14", features = ["full"] }
-tower = { version = "0.4", features = ["full"] }
+hyper = { version = "1.6.0", features = ["full"] }
+tower = { version = "0.5.2", features = ["full"] }
 url = { version = "2.5", features = ["serde"] }
 
 # Serialization & Deserialization
@@ -69,36 +69,35 @@ serde = { version = "1.0", features = ["derive", "rc"] }
 serde_json = { version = "1.0", features = ["preserve_order"] }
 serde_yaml = "0.9"
 toml = "0.8"
-bincode = "1.3"
+bincode = "2.0.1"
 
 # Configuration Management
-config = { version = "0.14", features = ["yaml", "toml", "json"] }
+config = { version = "0.15.11", features = ["yaml", "toml", "json"] }
 dotenvy = "0.15"
 clap = { version = "4.4", features = ["derive", "env"] }
 
 # Database & Caching
-sqlx = { version = "0.7", features = [
+sqlx = { version = "0.8.6", features = [
     "postgres", "runtime-tokio-rustls", "macros",
-    "uuid", "chrono", "json", "migrate", "decimal"
+    "uuid", "chrono", "json", "migrate"
 ] }
-redis = { version = "0.24", features = [
+redis = { version = "0.31.0", features = [
     "tokio-comp", "connection-manager", "cluster", "streams"
 ] }
 
 # Telegram Integration
-teloxide = { version = "0.12", features = ["macros", "webhooks"] }
+teloxide = { version = "0.15.0", features = ["macros", "webhooks"] }
 
 # Cryptography & Security
 ring = "0.17"
 aes-gcm = "0.10"
 chacha20poly1305 = "0.10"
 argon2 = "0.5"
-base64 = "0.21"
+base64 = "0.22.1"
 base58 = "0.2"
 hex = "0.4"
-rand = "0.8"
+rand = "0.9.1"
 zeroize = { version = "1.7", features = ["zeroize_derive"] }
-
 # Time & Date
 chrono = { version = "0.4", features = ["serde"] }
 time = { version = "0.3", features = ["serde", "macros"] }
@@ -107,7 +106,7 @@ time = { version = "0.3", features = ["serde", "macros"] }
 uuid = { version = "1.6", features = ["v4", "serde"] }
 once_cell = "1.19"
 lazy_static = "1.4"
-dashmap = "5.5"
+dashmap = "6.1.0"
 parking_lot = "0.12"
 rayon = "1.8"
 crossbeam = "0.8"
@@ -115,18 +114,16 @@ crossbeam = "0.8"
 # Financial Calculations
 rust_decimal = { version = "1.33", features = ["serde-float"] }
 rust_decimal_macros = "1.33"
-pbkdf2 = "0.13.0-rc.0"
-regex = "1.11.1"
 
 # Development Dependencies
 [dev-dependencies]
 tokio-test = "0.4"
-mockall = "0.12"
-wiremock = "0.5"
+mockall = "0.13.1"
+wiremock = "0.6.3"
 tempfile = "3.8"
 assert_matches = "1.5"
 pretty_assertions = "1.4"
-criterion = { version = "0.5", features = ["html_reports"] }
+criterion = { version = "0.6.0", features = ["html_reports"] }
 proptest = "1.4"
 
 # Build Optimization
